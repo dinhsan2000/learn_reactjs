@@ -1,23 +1,110 @@
+import React from 'react';
+import { useNavigate, Route, Routes } from 'react-router-dom';
+import Category from './Categories/Category';
+import { Breadcrumb, Layout, Menu } from 'antd';
 import logo from './logo.svg';
+import 'antd/dist/reset.css';
 import './App.scss';
+import {
+  HomeOutlined, ShopOutlined, ShoppingCartOutlined, AppstoreOutlined, UserOutlined, ToolOutlined, TeamOutlined,PlusCircleOutlined
+} from '@ant-design/icons';
 
+const { Header, Content, Footer, Sider } = Layout;
+const items = [
+  {
+    label: "Dashbroad",
+    key: '/',
+    icon: <HomeOutlined />
+  },
+  {
+    label: "List Category",
+    key: '/category',
+    icon: <ShopOutlined />,
+    children: [ 
+      {
+        label:"Create Category",
+        key:'/create-category',
+        icon: <PlusCircleOutlined />
+      },
+    ]
+  },
+  {
+    label: "List Product",
+    key: '/product',
+    icon: <AppstoreOutlined />
+  },
+  {
+    label: "List Cart",
+    key: '/cart',
+    icon: <ShoppingCartOutlined />
+  },
+  {
+    label: "Me",
+    key: '/setting',
+    icon: <UserOutlined />
+  },
+  {
+    label: "List User",
+    key: '/user',
+    icon: <TeamOutlined />
+  },
+  {
+    label: "Setting Website",
+    key: '/setting',
+    icon: <ToolOutlined />
+  }
+
+]
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <SideMenu />
+      </div>
+    </div>
+  );
+}
+
+function SideMenu() {
+  const navigate = useNavigate();
+  return (
+
+    <Layout
+      style={{
+        minHeight: '100vh',
+      }}>
+      <Sider collapsedWidth="0" breakpoint="sm">
+        <div className="logo">
+          <img src={logo} alt="logo" />
+        </div>
+        <Menu theme="dark" mode="inline" onClick={({ key }) => { navigate(key) }} items={items}>
+        </Menu>
+      </Sider>
+      <Layout className="site-layout">
+        <Header className="site-layout-background" style={{ padding: 0 }} />
+        <Content style={{ margin: '0 16px' }}>
+          <Breadcrumb style={{ margin: '16px 0' }}>
+            <Breadcrumb.Item>User</Breadcrumb.Item>
+            <Breadcrumb.Item>Bill</Breadcrumb.Item>
+          </Breadcrumb>
+          <div className="site-layout-background" style={{ padding: 24, minHeight: 360, }}>
+            <Contents />
+          </div>
+        </Content>
+        <Footer style={{ textAlign: 'center', }}>
+          ©2022 Created by Dinh Trong San
+        </Footer>
+      </Layout>
+    </Layout>
+  );
+}
+function Contents() {
+  return (
+    <div>
+      <Routes>
+        <Route path='/' element={<Category />}></Route>
+        <Route path='/category' element={<Category />}></Route>
+      </Routes>
     </div>
   );
 }
