@@ -7,7 +7,7 @@ import logo from './logo.svg';
 import 'antd/dist/reset.css';
 import './App.scss';
 import {
-  HomeOutlined, ShopOutlined, ShoppingCartOutlined, AppstoreOutlined, UserOutlined, ToolOutlined, TeamOutlined,PlusCircleOutlined
+  HomeOutlined, ShopOutlined, ShoppingCartOutlined, AppstoreOutlined, UserOutlined, ToolOutlined, TeamOutlined
 } from '@ant-design/icons';
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -18,16 +18,9 @@ const items = [
     icon: <HomeOutlined />
   },
   {
-    label: "List Category",
+    label: "Category",
     key: '/category',
-    icon: <ShopOutlined />,
-    children: [ 
-      {
-        label:"Create Category",
-        key:'/create-category',
-        icon: <PlusCircleOutlined />
-      },
-    ]
+    icon: <ShopOutlined />
   },
   {
     label: "List Product",
@@ -60,7 +53,6 @@ function App() {
   return (
     <div className="App">
         <SideMenu />
-        <Dashbroad />
     </div>
   );
 }
