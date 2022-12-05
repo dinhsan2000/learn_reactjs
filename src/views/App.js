@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate, Route, Routes } from 'react-router-dom';
 import Category from './Categories/Category';
+import Dashbroad from './Dashbroads/Dashbroad';
 import { Breadcrumb, Layout, Menu } from 'antd';
 import logo from './logo.svg';
 import 'antd/dist/reset.css';
@@ -58,9 +59,8 @@ const items = [
 function App() {
   return (
     <div className="App">
-      <div>
         <SideMenu />
-      </div>
+        <Dashbroad />
     </div>
   );
 }
@@ -84,15 +84,16 @@ function SideMenu() {
         <Header className="site-layout-background" style={{ padding: 0 }} />
         <Content style={{ margin: '0 16px' }}>
           <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>User</Breadcrumb.Item>
-            <Breadcrumb.Item>Bill</Breadcrumb.Item>
+            <Breadcrumb.Item href='/'> Home</Breadcrumb.Item>
+            <Breadcrumb.Item href='/category'>Bill</Breadcrumb.Item>
+            <Breadcrumb.Item href='/category'>Bill</Breadcrumb.Item>
           </Breadcrumb>
           <div className="site-layout-background" style={{ padding: 24, minHeight: 360, }}>
             <Contents />
           </div>
         </Content>
         <Footer style={{ textAlign: 'center', }}>
-          ©2022 Created by Dinh Trong San
+        Copyright ©{new Date().getFullYear()} Created by Dinh Trong San
         </Footer>
       </Layout>
     </Layout>
@@ -102,7 +103,7 @@ function Contents() {
   return (
     <div>
       <Routes>
-        <Route path='/' element={<Category />}></Route>
+        <Route path='/' element={<Dashbroad />}></Route>
         <Route path='/category' element={<Category />}></Route>
       </Routes>
     </div>
